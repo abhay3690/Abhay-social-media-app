@@ -4,6 +4,7 @@ import { TextField, Button } from "@mui/material"; // Import Button from Materia
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { loginUserAction } from "../../Redux/Auth/auth.action";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = { email: "", password: "" };
 
@@ -17,6 +18,7 @@ const validationSchema = Yup.object({
 const Login = () => {
   // const [formValue, setFormValue] = useState();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values) => {
     console.log("handle submit", values);
@@ -74,6 +76,10 @@ const Login = () => {
           </Button>
         </Form>
       </Formik>
+      <div className="flex gap-2 items-center justify-center pt-5">
+        <p>if you don't have account?</p>
+        <Button onClick={()=>navigate("/register")}>Register</Button>
+      </div>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MiddlePart from "../../components/MiddlePart/MiddlePart";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -7,9 +7,17 @@ import CreateReelsForm from "../../components/Reels/CreateReelsForm";
 import Reels from "../../components/Reels/Reels";
 import Profile from "../../pages/Profile/Profile"; // Ensure this path is correct
 import HomeRight from "../../components/HomeRight/HomeRight";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileAction } from "../../Redux/Auth/auth.action";
+// import { store } from "../../Redux/store";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+  console.log( "auth", auth);
+ 
   return (
     <div className="px-20">
       <Grid container spacing={0}>
@@ -31,11 +39,13 @@ const HomePage = () => {
             <Route path="/profile/:id" element={<Profile />} />
           </Routes>
         </Grid>
-        <Grid item lg={3} className="relative">
-          <div className="sticky top-0 w-full">
-            <HomeRight/>
-          </div>
-        </Grid>
+        {location.pathname === "/" && (
+          <Grid item lg={3} className="relative">
+            <div className="sticky top-0 w-full">
+              <HomeRight />
+            </div>
+          </Grid>
+        )}
       </Grid>
     </div>
   );

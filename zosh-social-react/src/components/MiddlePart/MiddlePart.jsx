@@ -5,8 +5,10 @@ import StoryCircle from "./StoryCircle";
 import ImageIcon from "@mui/icons-material/Image";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import ArticleIcon from "@mui/icons-material/Article";
+import PostCard from "../Post/PostCard";
 
 const story = [11, 1, 1, 1, 1];
+const posts = [1,1,1,1,1,1];
 
 const MiddlePart = () => {
   const handleOpenCreatePostModel = () => {
@@ -56,10 +58,15 @@ const MiddlePart = () => {
             <IconButton color="primary" onClick={handleOpenCreatePostModel}>
               <ArticleIcon />
             </IconButton>
-            <span>Article</span>
+            <span>Write Article</span>
           </div>
         </div>
       </Card>
+      <div className="mt-5 apace-y-5">
+        {posts.map((item)=><PostCard/>)}
+        
+
+      </div>
     </div>
   );
 };
