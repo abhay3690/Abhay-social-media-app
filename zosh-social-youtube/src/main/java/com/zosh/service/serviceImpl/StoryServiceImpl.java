@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 @Service
 @AllArgsConstructor
-public class SoryServiceImpl implements StoryService {
+public class StoryServiceImpl implements StoryService {
     private final StoryRepossitory storyRepossitory;
     private final UserService userService;
     @Override

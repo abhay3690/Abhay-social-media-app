@@ -15,9 +15,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+
     @Override
     public User registerUser(User user) {
         User newUser = new User();
+
         newUser.setId(user.getId());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(Integer userId) throws UserException {
         Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()){
+        if (user.isPresent()) {
             return user.get();
         }
         throw new UserException("User not exist with userId" + userId);
@@ -72,7 +74,7 @@ public class UserServiceImpl implements UserService {
         if (user.getEmail() != null) {
             oldUser.setEmail(user.getEmail());
         }
-        if (user.getGender() != null){
+        if (user.getGender() != null) {
             oldUser.setGender(user.getGender());
         }
         return userRepository.save(oldUser);

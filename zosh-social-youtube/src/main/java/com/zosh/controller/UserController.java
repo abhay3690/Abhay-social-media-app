@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class UserController {
@@ -16,13 +17,13 @@ public class UserController {
 
 
     @GetMapping("/api/users")
-    public List<User> getUser(){
+    public List<User> getUser() {
         List<User> users = userRepository.findAll();
         return users;
     }
 
     @GetMapping("/api/users/{userid}")
-    public User getUserById(@PathVariable("userid") Integer userId) throws UserException{
+    public User getUserById(@PathVariable("userid") Integer userId) throws UserException {
         User user = userService.findUserById(userId);
         return user;
 
@@ -34,23 +35,26 @@ public class UserController {
         User updatedUser = userService.updateUser(user, reqUser.getId());
         return updatedUser;
     }
+
     @PutMapping("/api/users/follow/{userId2}")
     public User followUserHandler(@RequestHeader("Authorization") String jwt, @PathVariable Integer userId2) throws UserException {
         User reqUser = userService.findUserByJwt(jwt);
-        User user = userService.followUser(reqUser.getId(),userId2);
+        User user = userService.followUser(reqUser.getId(), userId2);
         return user;
     }
+
     @GetMapping("/api/users/search")
-    public List<User> searchUser(@RequestParam("query") String query){
+    public List<User> searchUser(@RequestParam("query") String query) {
         List<User> user = userService.searchUser(query);
         return user;
     }
-@GetMapping("/api/users/profile")
-public User getUserFromToken(@RequestHeader("Authorization") String jwt) {
 
-    User user = userService.findUserByJwt(jwt);
-    user.setPassword(null);
-    // Add your logic to retrieve the user using the JWT token
-    return user;
-}
+    @GetMapping("/api/users/profile")
+    public User getUserFromToken(@RequestHeader("Authorization") String jwt) {
+
+        User user = userService.findUserByJwt(jwt);
+        user.setPassword(null);
+        // Add your logic to retrieve the user using the JWT token
+        return user;
+    }
 }
