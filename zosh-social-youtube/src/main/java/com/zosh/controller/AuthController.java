@@ -31,11 +31,11 @@ public class AuthController {
         User isExist = userRepository.findByEmail(user.getEmail());
         if (isExist != null){
             throw new Exception("This email is alrady userd with another account ");
-
         }
         User newUser = new User();
 
         newUser.setFirstName(user.getFirstName());
+
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -68,5 +68,4 @@ public class AuthController {
         }
         return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
     }
-
 }

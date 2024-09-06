@@ -82,14 +82,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> searchUser(String query) {
-
         return userRepository.searchUser(query);
     }
 
     @Override
     public User findUserByJwt(String jwt) {
         String email = JwtProvider.getEmailFromJwtToken(jwt);
-        User user = userRepository.findByEmail(email);
-        return user;
+        return userRepository.findByEmail(email);
     }
 }
