@@ -26,7 +26,6 @@ public class UserController {
     public User getUserById(@PathVariable("userid") Integer userId) throws UserException {
         User user = userService.findUserById(userId);
         return user;
-
     }
 
     @PutMapping("/api/users")

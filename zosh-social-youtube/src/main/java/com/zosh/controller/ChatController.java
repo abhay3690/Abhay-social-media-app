@@ -20,7 +20,8 @@ public class ChatController{
         User reqUser = userService.findUserByJwt(jwt);
         User user2 = userService.findUserById(req.getUserId());
         Chat chats = chatService.createChat(reqUser, user2);
-
+//        added
+        jwt.compareTo(chats.getChat_name());
         return chats;
     }
     @GetMapping("/api/chats")
