@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { updateProfileAction } from "../../Redux/Auth/auth.action";
 import { Avatar, IconButton, TextField } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -73,9 +73,24 @@ export default function ProfileModal(open, handleClose) {
                 />
               </div>
             </div>
+
             <div className="space-y-3">
-                <TextField fullWidth id="firstName" name="firstName" label="First Name" value={formik.values.firstName} onChange={formik.handleChange} />
-                <TextField fullWidth id="lastName" name="lastName" label="Last Name" value={formik.values.lastName} onChange={formik.handleChange} />
+              <TextField
+                fullWidth
+                id="firstName"
+                name="firstName"
+                label="First Name"
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
+              />
+              <TextField
+                fullWidth
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
+              />
             </div>
           </form>
         </Box>
