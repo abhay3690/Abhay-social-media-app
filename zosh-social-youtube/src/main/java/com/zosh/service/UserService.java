@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public interface UserService {
+public interface    UserService {
 
     public User registerUser(User user);
     public User findUserById(Integer userId) throws UserException;
