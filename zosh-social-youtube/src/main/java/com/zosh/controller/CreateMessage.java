@@ -7,6 +7,7 @@ import com.zosh.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,7 @@ public class CreateMessage {
     public Message createMessage(@RequestHeader("Authorization") String jwt, @PathVariable Integer chatId, @RequestBody Message req) throws Exception {
         User user = userService.findUserByJwt(jwt);
         Message message =messageService.createMessage(user,chatId, req);
+//        message.setTimestamp(LocalDateTime.now());
         return message;
     }
     @GetMapping("/api/messages/chat/{chatId}")
